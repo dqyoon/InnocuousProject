@@ -32,7 +32,7 @@ public class ContentController {
 		ModelAndView mav = new ModelAndView();
 		if ((String) httpSession.getAttribute("sid") == null) {
 			mav.setViewName("result");
-			mav.addObject("msg", "로그인을 하셔야합니다.");
+			mav.addObject("msg", "");
 			mav.addObject("url", "../user/login");
 			return mav;
 		}
