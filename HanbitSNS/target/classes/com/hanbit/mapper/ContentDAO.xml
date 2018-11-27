@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanbit.dao.ContentDAO">
+	<select id="getContentList" parameterType="map"
+		resultType="com.hanbit.vo.ContentVO">
+		select C.*
+		from (select
+		rownum
+		as rnum, A.*,U2.name, U2.nick,
+		U2.image
+		from (select no, content,
+		uploaddate, file1, file2, color, joa,
+		siro,
+		user_phone
+		from boardcontent
+		B
+		where user_phone = #{sid}
+		or
+		user_phone in (select U1.phone
+		from friend
+		F join usertable U1
+		on
+		F.f_phone = U1.phone
+		and F.u_phone = #{sid})
+		order by uploaddate desc)A
+		join usertable U2
+		on U2.phone =
+		A.user_phone)C
+		where rnum between
+		#{startNum} and #{endNum}
+	</select>
+
+	<select id="getContentCount" parameterType="string" resultType="java.lang.Integer">
+		select count(*)
+		from (select no, content, uploaddate, file1, file2,
+		color, joa, siro,
+		user_phone
+		from boardcontent B
+		where user_phone =
+		#{sid}
+		or
+		user_phone in (select U1.phone
+		from friend F join usertable U1
+		on F.f_phone = U1.phone
+		and F.u_phone = #{sid})
+		order by uploaddate
+		desc)A join usertable
+		U2
+		on U2.phone = A.user_phone
+	</select>
+
+	<select id="getUserProfile" parameterType="String" resultType="com.hanbit.vo.UserVO">
+		select *
+		from usertable
+		where phone = #{sid}
+	</select>
+
+	<insert id="uploadboard" parameterType="com.hanbit.vo.ContentVO">
+		insert into boardcontent
+		values(boardcontent_seq.nextval, #{content}, sysdate, #{file1},
+		#{file2},'체크인', #{color}, #{user_phone}, '0', '0')
+	</insert>
+
+	<delete id="boarddelete">
+		delete from boardcontent where no=#{no}
+	</delete>
+
+	<!-- 동규씨라인 -->
+	<select id="getcontentsload" parameterType="String"
+		resultType="com.hanbit.vo.ContentVO">
+		select uploaddate, content
+		from boardcontent
+		where user_phone
+		= #{sid}
+	</select>
+
+	<select id="getImage1" parameterType="String" resultType="com.hanbit.vo.ContentVO">
+		select
+		file1, file2, uploaddate, content ,no, joa,siro
+		from boardcontent
+		where
+		user_phone
+		= #{sid}
+		order by uploaddate desc
+	</select>
+
+	<select id="getcontentnumber" parameterType="String" resultType="java.lang.Integer">
+		select count(*) from boardcontent where user_phone=#{sid}
+	</select>
+
+	<select id="getnumber" parameterType="String" resultType="com.hanbit.vo.ContentVO">
+		select
+		no from boardcontent where user_phone=#{sid}
+	</select>
+
+	<delete id="deletecontent">
+		delete from boardcontent where no = #{no}
+	</delete>
+
+	<select id="getColorSortingList" parameterType="map"
+		resultType="com.hanbit.vo.ContentVO">
+		select A.*
+		from(select rownum as rnum, no, content,
+		uploaddate, file1, file2, checkin,
+		color, user_phone
+		from boardcontent
+		where user_phone= #{sid}
+		and color = #{color}
+		order by uploaddate desc)
+		A
+		where rnum between 1 and 5
+	</select>
+
+</mapper>

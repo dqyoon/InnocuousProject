@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hanbit.dao.ProfileUploadDAO">
+	<!-- select email, pass from usertable where email=#{email} -->
+	<update id="getProfileUpload" parameterType="String">
+
+		update usertable set image = #{image} where phone= #{sid}
+	</update>
+	<update id="getProfileUpdate" parameterType="java.lang.String">
+		update usertable set  address = #{address}, love = #{love}, nick = #{nick},image = #{image} where phone= #{sid}
+	</update>
+	
+	<select id="getImageCheck" parameterType="com.hanbit.vo.UserVO" resultType="com.hanbit.vo.UserVO">
+		
+		select image from usertable where image = #{image}
+	</select>
+</mapper>

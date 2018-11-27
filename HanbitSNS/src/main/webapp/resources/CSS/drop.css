@@ -1,0 +1,62 @@
+li {
+	list-style-type: none;
+	font-size:10pt;
+	color: black;
+}
+#deleteSNS{
+	margin-left: 430px;;
+}
+span.btn_Drop{
+
+	float:left;
+	margin-left: 40px;
+	background-color:skyblue;
+	text-align: center;
+	font-size: 12pt;
+	font-weight: bold;	
+	padding: 10px 120px 10px 120px;
+	cursor: pointer;
+	color: black;
+	
+}
+span.delete2{
+	float:left;
+	margin-left: 40px;
+	width:60px;
+	height:40px;
+	background-color:pink;
+	text-align: center;
+	font-size: 5pt;
+	font-weight: bold;	
+	padding: 15px 10px 10px 10px;
+	cursor: pointer;
+	color: black;
+	
+}
+span.delete3{
+	float:left;
+	margin-left: 40px;
+	width:60px;
+	height:40px;
+	background-color:pink;
+	text-align: center;
+	font-size: 5pt;
+	font-weight: bold;	
+	padding: 15px 10px 10px 10px;
+	cursor: pointer;
+	color: black;
+	
+}
+#logo{
+	width:100px;
+	height:100px;
+	margin-top:-20px;
+	margin-left:30px;
+}
+#userpic{
+	border: 1px RGB(242,240,238);
+	background-color:RGB(242,240,238);
+	width:600px;
+	height:200px;
+	margin-bottom:40px;
+}

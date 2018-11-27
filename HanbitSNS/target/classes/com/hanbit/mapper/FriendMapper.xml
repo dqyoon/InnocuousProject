@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanbit.dao.FriendDAO">
+	<select id="getHumanList" parameterType="map" resultType="com.hanbit.vo.UserVO">
+		select
+		A.*
+		from(select rownum as rnum, phone, name, nick, image, love, gender,
+		age
+		from usertable
+		where phone != #{sid}
+		and name != '팔로워'
+		and phone not
+		in
+		(select
+		U.phone
+		from
+		usertable U
+		join FRIEND F
+		on F.u_phone
+		= #{sid}
+		and
+		U.phone =
+		F.f_phone)
+		order BY
+		joindate desc) A
+		where A.rnum
+		between
+		#{startNum} and #{endNum}
+	</select>
+
+	<select id="getHumanTotalCount" parameterType="String"
+		resultType="java.lang.Integer">
+		select count(*)
+		from usertable
+		where phone != #{sid}
+		and name
+		!= '팔로워'
+		and phone
+		not in (select U.phone
+		from usertable U join FRIEND F
+		on F.u_phone = #{sid}
+		and U.phone = F.f_phone)
+	</select>
+
+	<select id="getFriendList" parameterType="map" resultType="com.hanbit.vo.UserVO">
+		select *
+		from (select rownum as rnum, A.phone, A.name, A.image
+		from(select DISTINCT(U.phone), U.name, U.image, F.eventdate
+		from
+		usertable U join FRIEND F
+		on F.u_phone = #{sid}
+		and U.phone = F.f_phone
+		order by F.eventdate desc)A)
+		where rnum between #{startNum} and
+		#{endNum}
+	</select>
+
+	<select id="getFollowerList" parameterType="map"
+		resultType="com.hanbit.vo.UserVO">
+		select *
+		from(select rownum as rnum, A.phone, A.name,
+		A.image
+		from(select DISTINCT(U.phone), U.name, U.image, F.eventdate
+		from usertable U join friend F
+		on F.f_phone = #{sid}
+		and F.u_phone =
+		U.phone
+		order by F.eventdate desc)A)
+		where rnum between #{startNum} and
+		#{endNum}
+	</select>
+
+	<select id="getFollowingCount" parameterType="String"
+		resultType="java.lang.Integer">
+		select count(*)
+		from
+		friend
+		where u_phone = #{id}
+	</select>
+
+	<select id="getFollowerCount" parameterType="String" resultType="java.lang.Integer">
+		select count(*)
+		from
+		friend
+		where f_phone = #{id}
+	</select>
+
+	<select id="followingCheck" parameterType="com.hanbit.vo.FriendVO"
+		resultType="java.lang.Integer">
+		select count(*) from friend
+		where u_phone = #{u_phone}
+		and
+		f_phone = #{f_phone}
+	</select>
+
+	<insert id="addFollowing" parameterType="com.hanbit.vo.FriendVO">
+		insert into friend
+		values(friend_no_seq.nextval, #{u_phone}, #{f_phone}, SYSDATE)
+	</insert>
+
+	<delete id="noFollowing" parameterType="com.hanbit.vo.FriendVO">
+		delete from friend
+		where
+		u_phone = #{u_phone}
+		and
+		f_phone = #{f_phone}
+	</delete>
+
+	<select id="getAutoComplete" parameterType="String"
+		resultType="com.hanbit.vo.UserVO">
+		select DISTINCT(A.phone), A.name, A.image, A.nick, A.age
+		from (select rownum as rnum, phone, name, image, nick, age
+		from
+		usertable
+		where name like #{keyword}
+		or nick like #{keyword}
+		or phone
+		like #{keyword}) A
+		where
+		A.rnum between 1 and
+		20
+		order
+		by A.name asc
+	</select>
+
+	<select id="getProfile" parameterType="String" resultType="com.hanbit.vo.UserVO">
+		select * from usertable
+		where phone = #{id}
+	</select>
+
+	<select id="getSearchList" parameterType="map" resultType="com.hanbit.vo.UserVO">
+		select A.*
+		from(select rownum as rnum, phone, name, gender, age,
+		address, love, nick, image
+		from usertable where phone != #{sid}
+		and nick
+		like #{keyword}
+		or name like #{keyword}
+		or phone like #{keyword}
+		order BY
+		joindate desc) A
+		where A.rnum between #{startNum} and #{endNum}
+	</select>
+
+	<select id="getSearchCount" parameterType="String" resultType="java.lang.Integer">
+		select count(*)
+		from usertable where phone != #{sid}
+		and nick like
+		#{keyword}
+		or name like #{keyword}
+		or phone like #{keyword}
+	</select>
+
+	<select id="getFollowerTop5" resultType="com.hanbit.vo.UserVO">
+		select A.fcount,
+		U.image, U.name, U.nick, U.phone
+		from (select count(f_phone) as fcount,
+		f_phone
+		from friend
+		group by f_phone
+		order by fcount desc) A join
+		usertable U
+		on
+		f_phone = phone
+		and rownum
+		between 1 and 5
+	</select>
+
+</mapper>
+
+

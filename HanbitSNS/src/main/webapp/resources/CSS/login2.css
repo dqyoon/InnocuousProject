@@ -1,0 +1,128 @@
+#myCarousel{
+width: 182px;
+heigt:400px;
+ margin-left: 305px;
+ margin-top:-363px;
+}
+ .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 280px;
+      heigt:1000px;
+     
+  }
+body{
+	/* background-image: url('../resources/IMAGE/1283260994_201008312223389896266501_0.jpg'); */
+
+}
+li {
+	list-style-type: none;
+	font-size:10pt;
+	color: black;
+}
+
+.id, .password{
+
+	border: 1px solid lightgray;
+	padding: 5px;
+	
+}
+
+
+#joinForm input[type=text],input[type=password]{
+	text-align: right;
+	width: 280px;
+	border: 1px solid lightgray;
+	padding: 18px;
+	
+	}
+#phone{
+
+margin-top: 80px;
+
+}
+li.Age{
+
+}	
+#joinForm2{
+	  margin-left: 900px; 
+	margin-top: 50px;
+	border:1px solid RGB(242,240,238)	; /* 지워야함 */
+	width: 450px;
+	height: 400px;
+	background-color:RGB(242,240,238);
+}	
+#joinForm{
+/* 	margin:auto;   */
+	margin-left:25px;
+	margin-top:25px;
+	/* border:1px solid black; */ /* 지워야함 */
+	width: 400px;
+	height: 350px;
+	background-image:url('');
+	background-color:white;
+	
+}
+.FirstName{
+	margin-left: 290px;
+}
+ul li.FirstName{
+	
+}
+#birthday{
+	width: 260px;
+	height:50px;
+}
+#top00{
+	height:140px;/* 
+	border: 3px solid red; */ /* 지워야함 */
+	/* background-color: skyblue; */
+}	
+#top{
+background-color:RGB(242,240,238);
+margin-top:-10px;
+
+}
+
+
+span.btn_Login{
+/* 	background-image:url('../images/Blur-Backgrounds-980x551.jpg'); */
+	/* float: left; */
+	margin-left: 40px;
+	background-color:skyblue;
+	text-align: center;
+	font-size: 12pt;
+	font-weight: bold;	
+	padding: 10px 120px 10px 120px;
+	cursor: pointer;
+	color: black;
+	
+}
+span.logo{
+float: left;
+margin-top:10px;}
+#logo{
+width:150px;
+}
+span.btn_Join{
+/* 	background-image:url('../images/Blur-Backgrounds-980x551.jpg'); */
+	/* float: left; */
+	float: left;
+	margin-top: 70px;
+	margin-left: 10px;
+	background-color:skyblue;
+	text-align: center;
+	font-weight: bold;
+	font-size: 8pt;
+	padding: 5px 10px 5px 10px;
+	cursor: pointer;
+	color: black;
+	
+}
+#hello{
+background-color: gray;
+}
+
+#item active{
+
+
+}

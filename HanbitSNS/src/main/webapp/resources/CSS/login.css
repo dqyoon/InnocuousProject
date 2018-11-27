@@ -1,0 +1,142 @@
+
+
+#loginSNS{
+
+margin-top: -20px;
+
+padding-top: 40px;
+
+
+background-color:RGB(242,240,238);
+/* border: 3px solid red; */
+
+	/* background-image:url('resources/IMAGE/K2yuC15.jpg'); */
+	
+}
+
+#top01,#top02 {
+	display: block;
+	float: right;
+	text-align: right;
+	margin-top:-25px;
+}
+
+li {
+	list-style-type: none;
+	font-size: 10pt;
+	color: black;
+}
+
+.id,.password {
+	border: 1px solid lightgray;
+	padding: 5px;
+}
+
+#loginSNS input[type=password]{
+
+text-align: right;
+	width: 140px;
+	border: 1px solid lightgray;
+	padding: 10px;
+	margin: auto;
+}
+
+#joinForm input[type=text],input[type=password] {
+	text-align: right;
+	width: 250px;
+	border: 1px solid lightgray;
+	padding: 10px;
+	margin: auto;
+	
+}
+
+
+
+li.Age {
+	
+}
+
+#joinForm2 {
+	
+	
+	width: 400px;
+	height:600px;
+	margin-left:25px;
+	
+	
+	background-color:white;
+	margin-top:20px;
+ 	border:1px solid RGB(242,240,238);
+	}
+#joinForm3{
+	
+	padding-top:0px;
+	margin-top:0px;
+	margin-left:1115px;
+	width: 450px;
+	height:660px;
+	background-color:RGB(242,240,238);
+	border:1px solid gray;
+}
+
+#logo{
+width:150px;
+margin-top:-20px;
+margin-left:30px;
+}
+.FirstName {
+	margin-left: 290px;
+}
+
+ul li.FirstName {
+	
+}
+
+#birthday {
+	width: 260px;
+	height: 50px;
+}
+
+#top00 {
+	height: 110px;
+	/* 지워야함 */
+	/* background-color: skyblue; */
+}
+#loginSNS input[type=text]{
+	text-align: right;
+	width: 140px;
+	border: 1px solid lightgray;
+	padding: 10px;
+	margin: auto;
+	
+}
+
+span.btn_Join {
+	/* 	background-image:url('../images/Blur-Backgrounds-980x551.jpg'); */
+	/* float: left; */
+	margin-left: 40px;
+	background-color: skyblue;
+	text-align: center;
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 10px 120px 10px 120px;
+	cursor: pointer;
+	color: black;
+}
+
+span.btn_Login {
+	/* 	background-image:url('../images/Blur-Backgrounds-980x551.jpg'); */
+	/* float: left; */
+	margin-left: 40px;
+	background-color: skyblue;
+	text-align: center;
+	font-weight: bold;
+	font-size: 8pt;
+	padding: 5px 10px 5px 10px;
+	cursor: pointer;
+	color: black;
+}
+
+#hello {
+	background-color: gray;
+}

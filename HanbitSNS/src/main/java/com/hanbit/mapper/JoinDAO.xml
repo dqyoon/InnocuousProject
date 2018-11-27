@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hanbit.dao.JoinDAO">
+	<!-- select email, pass from usertable where email=#{email} -->
+	<insert id="getJoin" parameterType="com.hanbit.vo.UserVO">
+
+		insert into usertable(phone, name, pw, gender, age, address, nick, image,
+		joindate,today)
+		values(#{phone},#{name},#{pw},#{gender},#{age},#{address},#{nick},'profile.PNG',sysdate,sysdate)
+
+	</insert>
+
+	<select id="getFollowerList" parameterType="String"
+		resultType="com.hanbit.vo.UserVO">
+		select
+		DISTINCT(U.phone), U.name, U.image
+		from usertable U
+		join friend F
+		on
+		F.f_phone = #{sid}
+		and F.u_phone =
+		U.phone
+	</select>
+
+	<select id="getFriendList" parameterType="String" resultType="com.hanbit.vo.UserVO">
+		select
+		DISTINCT(U.phone), U.name, U.image
+		from usertable U
+		join FRIEND F
+		on
+		F.u_phone = #{sid}
+		and U.phone = F.f_phone
+
+	</select>
+	<select id="getMatpalList" parameterType="String" resultType="com.hanbit.vo.UserVO">
+		select * from(
+			select DISTINCT(U.phone), U.name, U.image
+			from usertable U
+			join friend F
+			on
+			F.f_phone = #{sid} and F.u_phone = U.phone
+		INTERSECT
+			select DISTINCT(U.phone), U.name, U.image
+			from usertable U
+			join FRIEND F
+			on
+			F.u_phone = #{sid} and U.phone = F.f_phone
+		) T
+
+	</select>
+	<select id="getMatpalCount" parameterType="String" resultType="java.lang.Integer">
+		select count(*) from(
+			select * from(
+				select DISTINCT(U.phone), U.name, U.image
+				from usertable U
+				join friend F
+				on
+				F.f_phone = #{sid} and F.u_phone = U.phone
+			INTERSECT
+				select DISTINCT(U.phone), U.name, U.image
+				from usertable U
+				join FRIEND F
+				on
+				F.u_phone = #{sid} and U.phone = F.f_phone
+			) T)
+
+	</select>
+
+	<update id="setRpw" parameterType="com.hanbit.vo.UserVO">
+		update usertable set pw=#{pw}
+		where phone=#{phone}
+
+	</update>
+	<update id="getpassChange" parameterType="String">
+
+		update usertable set pw=#{pw} where phone=#{phone}
+
+	</update>
+
+	<update id="getpassChange2" parameterType="String">
+
+		update usertable set pw=#{pw} where phone=#{sid}
+
+	</update>
+
+
+	<select id="findphone" parameterType="java.lang.String"
+		resultType="com.hanbit.vo.UserVO">
+		select phone from usertable where name =#{name} and nick
+		=#{nick}
+	</select>
+
+
+
+
+	<select id="getProfile" parameterType="String" resultType="com.hanbit.vo.UserVO">
+		select * from usertable where phone = #{sid}
+
+	</select>
+	<select id="getProfile2" parameterType="String" resultType="com.hanbit.vo.UserVO">
+		select * from usertable where phone = #{sid}
+
+	</select>
+		<select id="getProfile3" parameterType="String" resultType="com.hanbit.vo.UserVO">
+		select image from usertable where phone = #{sid}
+
+	</select>
+	<select id="getIdcheck" parameterType="String" resultType="java.lang.Integer">
+		select count(*) from usertable where phone = #{phone}
+
+	</select>
+</mapper>
