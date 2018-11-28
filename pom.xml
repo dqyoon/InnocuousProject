@@ -252,6 +252,25 @@
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
 			</plugin>
+			<plugin> 
+				<groupId>org.codehaus.cargo</groupId> 
+				<artifactId>cargo-maven2-plugin</artifactId> 
+				<configuration> 
+					<type>runtime</type> 
+					<container> 
+						<containerId>tomcat7x</containerId> 
+						<type>remote</type> 
+					</container>
+					<configuration> 
+						<properties>                        	
+							<cargo.remote.username>admin</cargo.remote.username> 
+				        	<cargo.remote.password>admin</cargo.remote.password>
+							<cargo.tomcat.manager.url>http://<host>:<port>/manager</cargo.tomcat.manager.url> 
+						</properties>
+					</configuration> 
+
+				</configuration> 
+			</plugin> 
 		</plugins>
 	</build>
 </project>
